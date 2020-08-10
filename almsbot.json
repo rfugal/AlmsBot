@@ -1,0 +1,566 @@
+{
+    "friendlyName" : "",
+    "logQueries" : true,
+    "uniqueName" : "almsbot",
+    "defaults" : {
+        "defaults" : {
+            "assistant_initiation" : "task://greeting",
+            "fallback" : "task://fallback",
+            "collect" : {
+                "validate_on_failure" : "task://collect_fallback"
+            }
+        }
+    },
+    "styleSheet" : {
+        "style_sheet" : {
+            "collect" : {
+                "validate" : {
+                    "on_failure" : {
+                        "repeat_question" : false,
+                        "messages" : [
+                            {
+                                "say" : {
+                                    "speech" : "I didn't get that. What did you say?"
+                                }
+                            },
+                            {
+                                "say" : {
+                                    "speech" : "I still didn't catch that. Please repeat."
+                                }
+                            },
+                            {
+                                "say" : {
+                                    "speech" : "Let's try one last time. Say it again please."
+                                }
+                            }
+                        ]
+                    },
+                    "on_success" : { "say" : { "speech" : "" } },
+                    "max_attempts" : 4
+                }
+            },
+            "voice" : {
+                "say_voice" : "Polly.Matthew"
+            },
+            "name" : ""
+        }
+    },
+    "fieldTypes" : [
+        {
+            "uniqueName" : "AlmsPerson",
+            "values" : [
+                {
+                    "language" : "en-US",
+                    "value" : "Sally",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "Rico",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "Jon H.",
+                    "synonymOf" : null
+                }
+            ]
+        }
+    ],
+    "tasks" : [
+        {
+            "uniqueName" : "give_to_",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "{almsperson} needs $5 today."
+                    }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "almsperson",
+                    "fieldType" : "AlmsPerson"
+                },
+                {
+                    "uniqueName" : "dollars",
+                    "fieldType" : "Twilio.CURRENCY"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Give to {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Tell me about {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Who is {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What is {almsperson}'s story?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What does {almsperson} need?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What about {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Can I help {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How can I help {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How about {almsperson}?"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "need_help",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "We listen to your story and help you raise money from passers-by.\n🤲\n"
+                    },
+                    {
+                        "collect" : {
+                            "on_complete" : {
+                                "redirect" : {
+                                    "method" : "POST",
+                                    "uri" : "https://straw-snail-5162.twil.io/intake_almsperson"
+                                }
+                            },
+                            "name" : "intake_contact",
+                            "questions" : [
+                                {
+                                    "type" : "Twilio.FIRST_NAME",
+                                    "question" : "I'm just a chat bot🤖, but I'd like to connect you to our staff. \n\nWhat's your name?",
+                                    "name" : "first_name"
+                                },
+                                {
+                                    "type" : "Twilio.YES_NO",
+                                    "question" : "Can our advocate text you at this phone number?\n📱",
+                                    "name" : "text_able"
+                                },
+                                {
+                                    "type" : "Twilio.YES_NO",
+                                    "question" : "Can our advocate call you at this phone number?\n📞",
+                                    "name" : "voice_able"
+                                },
+                                {
+                                    "type" : "Twilio.TIME",
+                                    "question" : "What is the best hour🕔 to connect with you? \n(We'll connect ASAP, but it may be a couple days from now)",
+                                    "name" : "connect_hour"
+                                },
+                                {
+                                    "type" : "Twilio.CITY",
+                                    "question" : "What city are you in? \n🏙️",
+                                    "name" : "city"
+                                },
+                                {
+                                    "question" : "Got it!👍 \nAnything else I can pass along before they reach out, like is there another number we can reach you at?",
+                                    "name" : "comments"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I need help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "how can you help?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Can I get money?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I am in need of help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I could use some help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How do I get help?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What help is available?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I need money"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I need food"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "spanish",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Hacemos que dar y recibir limosnas sea fácil a través de la comunicación y la conexión personal."
+                    },
+                    {
+                        "say" : "Text2Alms.org, con sede en Utah, envía limosnas a los necesitados. \n\nSoy el AlmsBot. ¿Estás necesitado o te gustaría dar?"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "spanish"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "chatear en español"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "español"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "necesitan_ayuda",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Escuchamos su historia y le ayudamos a recaudar dinero de los transeúntes."
+                    },
+                    {
+                        "collect" : {
+                            "on_complete" : {
+                                "redirect" : {
+                                    "method" : "POST",
+                                    "uri" : "https://straw-snail-5162.twil.io/intake_almsperson"
+                                }
+                            },
+                            "name" : "intake_contact",
+                            "questions" : [
+                                {
+                                    "type" : "Twilio.FIRST_NAME",
+                                    "question" : "Me gustaría ponerle en contacto con nuestro personal. ¿Cuál es su nombre de pila?",
+                                    "name" : "first_name"
+                                },
+                                {
+                                    "type" : "Twilio.YES_NO",
+                                    "question" : "¿Puede nuestro defensor enviarle un mensaje de texto a este número de teléfono? responder yes o no",
+                                    "name" : "text_able"
+                                },
+                                {
+                                    "type" : "Twilio.YES_NO",
+                                    "question" : "¿Puede nuestro abogado llamarte a este número de teléfono? responder yes o no",
+                                    "name" : "voice_able"
+                                },
+                                {
+                                    "type" : "Twilio.TIME",
+                                    "question" : "¿Cuál es la mejor hora para conectar contigo? (Nos conectaremos lo antes posible, pero puede ser dentro de un par de días) responda con a.m. o p.m.' ",
+                                    "name" : "connect_hour"
+                                },
+                                {
+                                    "type" : "Twilio.CITY",
+                                    "question" : "¿En qué ciudad estás?",
+                                    "name" : "city"
+                                },
+                                {
+                                    "type" : "Twilio.YES_NO",
+                                    "question" : "¿Se siente cómodo hablando en inglés?",
+                                    "name" : "english_ok"
+                                },
+                                {
+                                    "question" : "Got it. ¿Algo más que pueda pasar antes de que lleguen? ¿Hay algún otro número en el que podamos localizarle?",
+                                    "name" : "comments"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Necesito comida"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Necesito dinero."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Qué ayuda hay disponible?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Cómo puedo obtener ayuda?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Me vendría bien algo de ayuda"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Puedo obtener dinero?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Cómo puedes ayudar?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "ayuda"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "give_general",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Do you hesitate to give alms to the destitue because of your unanswered questions? We answer with personal stories. Visit www.Text2Alms.org for the 411. \n📖"
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "i'd like to give"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "how can I give"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "give"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "I'm sorry didn't quite get that. Please say that again."
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "greeting",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Utah based Text2Alms.org forwards alms to those in need. We make giving and recieving alms easy through communication and personal connection."
+                    },
+                    {
+                        "say" : "\nTexto ESPAÑOL para chatear en español. \n\nI'm the AlmsBot🤖. Are you in need, or would you like to give?"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good morning"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "heya"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hello."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi!"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good afternoon"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hello"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "yo"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "sup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hey"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what can you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what do you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "whatsup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what'us up"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "collect_fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Looks like I'm having trouble. Apologies for that. Let's start again, how can I help you today?"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "goodbye",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Thank you! Please reach out again if you need anything. Goodbye."
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's all for today"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodbye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodnight"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "go away"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop talking"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that is all thank you"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "cancel"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "bye bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's all"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "see ya"
+                }
+            ]
+        }
+    ],
+    "modelBuild" : {
+        "uniqueName" : "almsbot_21-7-2020_5.33.54pm"
+    }
+}
