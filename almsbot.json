@@ -79,46 +79,30 @@
             },
             "fields" : [
                 {
-                    "uniqueName" : "almsperson",
-                    "fieldType" : "AlmsPerson"
-                },
-                {
                     "uniqueName" : "dollars",
                     "fieldType" : "Twilio.CURRENCY"
+                },
+                {
+                    "uniqueName" : "almsperson",
+                    "fieldType" : "AlmsPerson"
                 }
             ],
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "{almsperson}"
+                    "taggedText" : "Send {dollars} to {almsperson}"
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "Give to {almsperson}"
+                    "taggedText" : "Send {almsperson} {dollars}"
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "Tell me about {almsperson}"
+                    "taggedText" : "Give {dollars} to {almsperson}"
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "Who is {almsperson}?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "What is {almsperson}'s story?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "What does {almsperson} need?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "What about {almsperson}?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Can I help {almsperson}?"
+                    "taggedText" : "How about {almsperson}?"
                 },
                 {
                     "language" : "en-US",
@@ -126,7 +110,35 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "How about {almsperson}?"
+                    "taggedText" : "Can I help {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What about {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What does {almsperson} need?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What is {almsperson}'s story?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Who is {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Tell me about {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Give to {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{almsperson}"
                 }
             ]
         },
@@ -149,31 +161,116 @@
                             "questions" : [
                                 {
                                     "type" : "Twilio.FIRST_NAME",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "I didn't recognize that as a first name. Try again, or respond EXIT to leave the questionnaire."
+                                                },
+                                                {
+                                                    "say" : "Leaving the questionnaire"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://greeting",
+                                            "num_attempts" : 2
+                                        }
+                                    },
                                     "question" : "I'm just a chat bot🤖, but I'd like to connect you to our staff. \n\nWhat's your name?",
                                     "name" : "first_name"
                                 },
                                 {
                                     "type" : "Twilio.YES_NO",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "Can our advocate text you at this phone number? Reply yes or no; or respond EXIT to leave the questionnaire."
+                                                },
+                                                {
+                                                    "say" : "Leaving the questionnaire"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://greeting",
+                                            "num_attempts" : 2
+                                        }
+                                    },
                                     "question" : "Can our advocate text you at this phone number?\n📱",
                                     "name" : "text_able"
                                 },
                                 {
                                     "type" : "Twilio.YES_NO",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "Can our advocate call you at this phone number? Reply yes or no; or respond EXIT to leave the questionnaire."
+                                                },
+                                                {
+                                                    "say" : "Leaving the questionnaire"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://greeting",
+                                            "num_attempts" : 2
+                                        }
+                                    },
                                     "question" : "Can our advocate call you at this phone number?\n📞",
                                     "name" : "voice_able"
                                 },
                                 {
                                     "type" : "Twilio.TIME",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "Sorry, I didn’t catch that. Try again, or respond EXIT to leave the questionnaire."
+                                                },
+                                                {
+                                                    "say" : "Leaving the questionnaire"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://greeting",
+                                            "num_attempts" : 2
+                                        }
+                                    },
                                     "question" : "What is the best hour🕔 to connect with you? \n(We'll connect ASAP, but it may be a couple days from now)",
                                     "name" : "connect_hour"
                                 },
                                 {
                                     "type" : "Twilio.CITY",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "Sorry, I didn’t catch that. Try again, or respond EXIT to leave the questionnaire."
+                                                },
+                                                {
+                                                    "say" : "Leaving the questionnaire"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://greeting",
+                                            "num_attempts" : 2
+                                        }
+                                    },
                                     "question" : "What city are you in? \n🏙️",
                                     "name" : "city"
                                 },
                                 {
-                                    "question" : "Got it!👍 \nAnything else I can pass along before they reach out, like is there another number we can reach you at?",
+                                    "question" : "Got it!👍 \nAnything else I can pass along before they reach out, like is there another number we can reach you at? Reply no if not to submit.",
                                     "name" : "comments"
                                 }
                             ]
@@ -185,35 +282,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "I need help"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "help"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "how can you help?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Can I get money?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "I am in need of help"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "I could use some help"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "How do I get help?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "What help is available?"
+                    "taggedText" : "I need food"
                 },
                 {
                     "language" : "en-US",
@@ -221,7 +290,31 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "I need food"
+                    "taggedText" : "What help is available?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How do I get help?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I could use some help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I am in need of help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Can I get money?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "how can you help?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I need help"
                 }
             ]
         },
@@ -242,7 +335,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "spanish"
+                    "taggedText" : "español"
                 },
                 {
                     "language" : "en-US",
@@ -250,7 +343,7 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "español"
+                    "taggedText" : "spanish"
                 }
             ]
         },
@@ -314,27 +407,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "Necesito comida"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Necesito dinero."
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿Qué ayuda hay disponible?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿Cómo puedo obtener ayuda?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Me vendría bien algo de ayuda"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿Puedo obtener dinero?"
+                    "taggedText" : "ayuda"
                 },
                 {
                     "language" : "en-US",
@@ -342,7 +415,27 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "ayuda"
+                    "taggedText" : "¿Puedo obtener dinero?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Me vendría bien algo de ayuda"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Cómo puedo obtener ayuda?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Qué ayuda hay disponible?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Necesito dinero."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Necesito comida"
                 }
             ]
         },
@@ -359,7 +452,15 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "i'd like to give"
+                    "taggedText" : "gift"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "donate"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "give"
                 },
                 {
                     "language" : "en-US",
@@ -367,7 +468,7 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "give"
+                    "taggedText" : "i'd like to give"
                 }
             ]
         },
@@ -401,59 +502,15 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "Hi"
+                    "taggedText" : "help"
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "good morning"
+                    "taggedText" : "Help"
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "heya"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Hello."
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hi!"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hi there."
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "good afternoon"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hello"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "yo"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hi there"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "sup"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hey"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "what can you do"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "what do you do"
+                    "taggedText" : "what'us up"
                 },
                 {
                     "language" : "en-US",
@@ -461,7 +518,59 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "what'us up"
+                    "taggedText" : "what do you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what can you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hey"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "sup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "yo"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hello"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good afternoon"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi!"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hello."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "heya"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good morning"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi"
                 }
             ]
         },
@@ -491,63 +600,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "no thanks"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "that's all for today"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "that would be all"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "no thanks"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "goodbye"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "goodnight"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "go away"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "stop talking"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "no"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "that is all thank you"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "that would be all thanks"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "cancel"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "good bye"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "stop"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "bye bye"
+                    "taggedText" : "see ya"
                 },
                 {
                     "language" : "en-US",
@@ -555,12 +608,68 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "see ya"
+                    "taggedText" : "bye bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "cancel"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that is all thank you"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop talking"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "go away"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodnight"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodbye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's all for today"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
                 }
             ]
         }
     ],
     "modelBuild" : {
-        "uniqueName" : "almsbot_21-7-2020_5.33.54pm"
+        "uniqueName" : "almsbot_10-8-2020_12.37.14pm"
     }
 }

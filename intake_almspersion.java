@@ -12,7 +12,8 @@ exports.handler = function(context, event, callback) {
         connect_hour: answers.connect_hour.answer,
         city: answers.city.answer,
         comments: answers.comments.answer,
-        from: memory.twilio.chat.From
+        from: event.UserIdentifier,
+        channel: event.Channel
     };
     
     // Create a sync list item for the order
