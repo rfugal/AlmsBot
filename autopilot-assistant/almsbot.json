@@ -51,17 +51,12 @@
             "values" : [
                 {
                     "language" : "en-US",
-                    "value" : "Sally",
+                    "value" : "Bambie",
                     "synonymOf" : null
                 },
                 {
                     "language" : "en-US",
-                    "value" : "Rico",
-                    "synonymOf" : null
-                },
-                {
-                    "language" : "en-US",
-                    "value" : "Jon H.",
+                    "value" : "Kirk",
                     "synonymOf" : null
                 }
             ]
@@ -69,11 +64,117 @@
     ],
     "tasks" : [
         {
+            "uniqueName" : "help",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "If you need help text \"I need help\" \n\nOtherwise, try texting \n\"Bambie\" \n\"Kirk\" \nor \"give\""
+                    },
+                    {
+                        "redirect" : "task://greeting"
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "HELP"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "help"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "join_team",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://severless-xxxx.twil.io/intake_assist"
+                    }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "phone_number",
+                    "fieldType" : "Twilio.PHONE_NUMBER"
+                },
+                {
+                    "uniqueName" : "email",
+                    "fieldType" : "Twilio.EMAIL"
+                },
+                {
+                    "uniqueName" : "last_name",
+                    "fieldType" : "Twilio.LAST_NAME"
+                },
+                {
+                    "uniqueName" : "first_name",
+                    "fieldType" : "Twilio.FIRST_NAME"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Russ 801-888-2585"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{last_name} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{last_name} {email}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{last_name} {email} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {phone_number} {email}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {email} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {last_name} {email} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {last_name} {phone_number} {email}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {last_name} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {email}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {last_name} {email}"
+                }
+            ]
+        },
+        {
             "uniqueName" : "give_to_",
             "actions" : {
                 "actions" : [
                     {
-                        "say" : "{almsperson} needs $5 today."
+                        "redirect" : "https://severless-xxxx.twil.io/alms_query"
                     }
                 ]
             },
@@ -154,7 +255,7 @@
                             "on_complete" : {
                                 "redirect" : {
                                     "method" : "POST",
-                                    "uri" : "https://straw-snail-5162.twil.io/intake_almsperson"
+                                    "uri" : "https://severless-xxxx.twil.io/intake_almsperson"
                                 }
                             },
                             "name" : "intake_contact",
@@ -335,6 +436,46 @@
             "samples" : [
                 {
                     "language" : "en-US",
+                    "taggedText" : "habla usted espanol"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "habla usted español"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿habla usted espanol?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿habla usted español?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿hablas espanol?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hablas espanol"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hablas español"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿hablas español?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "chatear en espanol"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "espanol"
+                },
+                {
+                    "language" : "en-US",
                     "taggedText" : "español"
                 },
                 {
@@ -359,7 +500,7 @@
                             "on_complete" : {
                                 "redirect" : {
                                     "method" : "POST",
-                                    "uri" : "https://straw-snail-5162.twil.io/intake_almsperson"
+                                    "uri" : "https://severless-xxxx.twil.io/intake_almsperson"
                                 }
                             },
                             "name" : "intake_contact",
@@ -407,6 +548,14 @@
             "samples" : [
                 {
                     "language" : "en-US",
+                    "taggedText" : "necesito"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "necesitado"
+                },
+                {
+                    "language" : "en-US",
                     "taggedText" : "ayuda"
                 },
                 {
@@ -445,11 +594,30 @@
                 "actions" : [
                     {
                         "say" : "Do you hesitate to give alms to the destitue because of your unanswered questions? We answer with personal stories. Visit www.Text2Alms.org for the 411. \n📖"
+                    },
+                    {
+                        "say" : "Try texting: \n\"I need help\" \n\"Bambie\" \n\"Kirk\" \nor \"give\""
                     }
                 ]
             },
             "fields" : [],
             "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "regalar"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "donar"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "dar"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Me gustaría dar"
+                },
                 {
                     "language" : "en-US",
                     "taggedText" : "gift"
@@ -500,14 +668,6 @@
             },
             "fields" : [],
             "samples" : [
-                {
-                    "language" : "en-US",
-                    "taggedText" : "help"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Help"
-                },
                 {
                     "language" : "en-US",
                     "taggedText" : "what'us up"
@@ -670,6 +830,6 @@
         }
     ],
     "modelBuild" : {
-        "uniqueName" : "almsbot_10-8-2020_12.37.14pm"
+        "uniqueName" : "almsbot_11-8-2020_6.55.00pm"
     }
 }

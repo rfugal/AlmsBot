@@ -2,8 +2,8 @@ exports.handler = function(context, event, callback) {
     let memory = JSON.parse(event.Memory);
     let answers = memory.twilio.collected_data.intake_contact.answers;
     
-    const ALMSPERSONS = 'almspersons';
-    const SERVICE_SID = context.SYNC_ALMSPERSON_SID;
+    const ALMSPERSONS_SID = context.ALMSPERSONS_SID;
+    const SERVICE_SID = context.SYNC_SERVICE_SID;
     
     const intakeContact = {
         first_name: answers.first_name.answer,
@@ -20,26 +20,23 @@ exports.handler = function(context, event, callback) {
     const twilioClient = context.getTwilioClient();
     twilioClient.sync
         .services(SERVICE_SID)
-        .syncLists(ALMSPERSONS)
+        .syncLists(ALMSPERSONS_SID)
         .syncListItems.create({ data: intakeContact })
         .then(x => {
-            callback(null, undefined);
-        
-        })
-        .catch(err => callback(err));
-
-    console.log(memory.twilio.chat.From);
-
-    first_name = answers.first_name.answer;
-    let message = "One of our advocates will be in touch with you soon, " + first_name + ". God bless.";
-    
-    let responseObject = {
-        "actions": [
-            {
-                "say": message
+            console.log('success!');
+            first_name = answers.first_name.answer;
+            let message = "One of our advocates will be in touch with you soon, " + first_name + ". God bless.";
+            let responseObject = {
+                "actions": [
+                    {
+                        "say": message
+                    }
+                ]
             }
-        ]
-    }
-    
-    callback(null, responseObject);
+            callback(null, responseObject);
+        })
+        .catch(err => {
+            callback(err); 
+            console.log(err);
+        });
 };
