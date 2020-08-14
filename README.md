@@ -1,12 +1,14 @@
 # AlmsBot by Text2Alms.org
 
+[Demo](https://twitter.com/rfugal/status/1294060585475141632) video on Twitter.
+
 AlmsBot is the [Twilio](https://twilio.com)-based front-end for Text2Alms. Utah-based Text2Alms is a storyteller, a community resource for the unhoused and unemployed, and payment processor. When someone is in need we interview them, fact check their story, tell their story in 160 characters, and text their story to anyone who texts their name/handle to our number. We then invite the texter to give to the almsman/almswoman through our platform, and Text2Alms forwards alms to those in need.
 
 We make giving and recieving alms easy through communication and personal connection. Potential givers with unanswered questions may hesitate to give alms to the destitue. We answer with personal stories. Visit [www.Text2Alms.org](http://www.text2alms.org) for the 411.
 
 AlmsBot is open source, and we invite anyone interested to help us develop the code and use it to start up a similar local non-profit.
 
-I wrote up (something on r/homeless)[https://www.reddit.com/r/homeless/comments/i8llcf/giving_alms_by_sms/] for some feedback.
+I wrote up [something on r/homeless](https://www.reddit.com/r/homeless/comments/i8llcf/giving_alms_by_sms/) for some feedback:
 > I’m starting a non-profit that is a storyteller, a community resource for the unhoused and unemployed, and a payment (donation) processor. When someone is in need we interview them, fact check their story, tell their story in 160 characters, and text their story to anyone who texts their name/handle to our number. That way anyone flying a sign can add "Text {NAME} to {PHONE_NUMBER}"
 > We then invite the texter to give to the almsman/almswoman through our platform, and our organization forwards alms to those in need.
 > I’m looking for constructive feedback on the mission, collaboration on interview questions, and contributing developers on the open source code: https://github.com/rfugal/AlmsBot. I'll be reaching out to local orgs as well as local almspersons.
