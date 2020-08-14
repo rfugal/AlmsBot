@@ -1,4 +1,4 @@
-# AlmsBot
+# AlmsBot by Text2Alms.org
 
 AlmsBot is the [Twilio](https://twilio.com)-based front-end for Text2Alms. Text2Alms is a storyteller, a community resource for the unhoused and unemployed, and payment processor. When someone is in need we interview them, fact check their story, tell their story in 160 characters, and text their story to anyone who texts their name/handle to our number. We then invite the texter to give to the almsman/almswoman through our platform, and Text2Alms forwards alms to those in need.
 
