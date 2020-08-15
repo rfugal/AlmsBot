@@ -2,7 +2,7 @@ exports.handler = function(context, event, callback) {
     let memory = JSON.parse(event.Memory);
     let answers = memory.twilio.collected_data.intake_contact.answers;
     
-    const ALMSPERSONS_SID = context.ALMSPERSONS_SID;
+    const ALMSPERSONS = context.ALMSPERSONS_SID;
     const SERVICE_SID = context.SYNC_SERVICE_SID;
     
     const intakeContact = {
@@ -12,7 +12,7 @@ exports.handler = function(context, event, callback) {
         connect_hour: answers.connect_hour.answer,
         city: answers.city.answer,
         comments: answers.comments.answer,
-        from: event.UserIdentifier,
+        From: event.UserIdentifier,
         channel: event.Channel
     };
     
@@ -20,7 +20,7 @@ exports.handler = function(context, event, callback) {
     const twilioClient = context.getTwilioClient();
     twilioClient.sync
         .services(SERVICE_SID)
-        .syncLists(ALMSPERSONS_SID)
+        .syncLists(ALMSPERSONS)
         .syncListItems.create({ data: intakeContact })
         .then(x => {
             console.log('success!');

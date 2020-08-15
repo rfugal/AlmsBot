@@ -64,6 +64,72 @@
     ],
     "tasks" : [
         {
+            "uniqueName" : "give_amount",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://almsbot-severless-xxxx-prod.twil.io/donation_fee"
+                    }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "yes_no_give",
+                    "fieldType" : "Twilio.YES_NO"
+                },
+                {
+                    "uniqueName" : "yes_no_reply",
+                    "fieldType" : "Twilio.YES_NO"
+                },
+                {
+                    "uniqueName" : "give_amount",
+                    "fieldType" : "Twilio.CURRENCY"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no i want to give {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no, ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, I want to give {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "let's do {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I can do {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "just {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I want to give {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{give_amount}"
+                }
+            ]
+        },
+        {
             "uniqueName" : "help",
             "actions" : {
                 "actions" : [
@@ -96,7 +162,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://severless-xxxx.twil.io/intake_assist"
+                        "redirect" : "https://almsbot-severless-xxxx-prod.twil.io/intake_assist"
                     }
                 ]
             },
@@ -174,7 +240,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://severless-xxxx.twil.io/alms_query"
+                        "redirect" : "https://almsbot-severless-xxxx-prod.twil.io/alms_query"
                     }
                 ]
             },
@@ -189,6 +255,22 @@
                 }
             ],
             "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "give {almsperson} ${dollars}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "send {almsperson} ${dollars}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "send ${dollars} to {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "give ${dollars} to {almsperson}"
+                },
                 {
                     "language" : "en-US",
                     "taggedText" : "Send {dollars} to {almsperson}"
@@ -255,7 +337,7 @@
                             "on_complete" : {
                                 "redirect" : {
                                     "method" : "POST",
-                                    "uri" : "https://severless-xxxx.twil.io/intake_almsperson"
+                                    "uri" : "https://almsbot-severless-xxxx-prod.twil.io/intake_almsperson"
                                 }
                             },
                             "name" : "intake_contact",
@@ -371,7 +453,7 @@
                                     "name" : "city"
                                 },
                                 {
-                                    "question" : "Got it!👍 \nAnything else I can pass along before they reach out, like is there another number we can reach you at? Reply no if not to submit.",
+                                    "question" : "Almost done!👍 \nAnything else I can pass along to an advocate, like is there another number to reach you at? Reply with anything to submit the questionnaire",
                                     "name" : "comments"
                                 }
                             ]
@@ -500,7 +582,7 @@
                             "on_complete" : {
                                 "redirect" : {
                                     "method" : "POST",
-                                    "uri" : "https://severless-xxxx.twil.io/intake_almsperson"
+                                    "uri" : "https://almsbot-severless-xxxx-prod.twil.io/intake_almsperson"
                                 }
                             },
                             "name" : "intake_contact",
@@ -670,6 +752,22 @@
             "samples" : [
                 {
                     "language" : "en-US",
+                    "taggedText" : "go back"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "restart"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "start over"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "startover"
+                },
+                {
+                    "language" : "en-US",
                     "taggedText" : "what'us up"
                 },
                 {
@@ -830,6 +928,6 @@
         }
     ],
     "modelBuild" : {
-        "uniqueName" : "almsbot_11-8-2020_6.55.00pm"
+        "uniqueName" : "almsbot_14-8-2020_11.37.05pm"
     }
 }
