@@ -12,13 +12,18 @@ exports.handler = function(context, event, callback) {
         connect_hour: answers.connect_hour.answer,
         city: answers.city.answer,
         comments: answers.comments.answer,
+        english_ok: answers.english_ok.answer,
         From: event.UserIdentifier,
         channel: event.Channel
     };
     message = `New almsperson— \n${intakeContact.UserIdentifier} \n${intakeContact.first_name} 
             \nText? ${intakeContact.text_able} \nCall? ${intakeContact.voice_able} \n${intakeContact.connect_hour} 
             \n${intakeContact.city} \n${intakeContact.comments} `;
-
+    
+    if ('english_ok' in intakeContact) {
+        message = message + `\nenglish? ${intakeContact.english_ok} `;
+    }
+    
     const twilioClient = context.getTwilioClient();
     twilioClient.messages.create({
         to: context.NOTIFICATION_PHONE_NUMBER,
