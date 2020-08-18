@@ -2,7 +2,7 @@ exports.handler = function(context, event, callback) {
     let memory = JSON.parse(event.Memory);
     let answers = memory.twilio.collected_data.intake_contact.answers;
     
-    const ALMSPERSONS = context.ALMSPERSONS_SID;
+    const ALMSPERSONS = context.ALMSPERSONS;
     const SERVICE_SID = context.SYNC_SERVICE_SID;
     
     const intakeContact = {
@@ -15,10 +15,19 @@ exports.handler = function(context, event, callback) {
         From: event.UserIdentifier,
         channel: event.Channel
     };
-    
-    // Create a sync list item for the order
+    message = `New almsperson— \n${intakeContact.UserIdentifier} \n${intakeContact.first_name} 
+            \nText? ${intakeContact.text_able} \nCall? ${intakeContact.voice_able} \n${intakeContact.connect_hour} 
+            \n${intakeContact.city} \n${intakeContact.comments} `;
+
     const twilioClient = context.getTwilioClient();
-    twilioClient.sync
+    twilioClient.messages.create({
+        to: context.NOTIFICATION_PHONE_NUMBER,
+        from: context.ALMSBOT_PHONE_NUMBER,
+        body: message
+    }).then(msg => {
+        // Create a sync list item for the order
+        const twilioClient = context.getTwilioClient();
+        twilioClient.sync
         .services(SERVICE_SID)
         .syncLists(ALMSPERSONS)
         .syncListItems.create({ data: intakeContact })
@@ -32,11 +41,12 @@ exports.handler = function(context, event, callback) {
                         "say": message
                     }
                 ]
-            }
+            };
             callback(null, responseObject);
         })
         .catch(err => {
             callback(err); 
             console.log(err);
         });
+    });
 };

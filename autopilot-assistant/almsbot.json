@@ -74,50 +74,22 @@
             },
             "fields" : [
                 {
+                    "uniqueName" : "give_amount",
+                    "fieldType" : "Twilio.NUMBER"
+                },
+                {
                     "uniqueName" : "yes_no_give",
                     "fieldType" : "Twilio.YES_NO"
-                },
-                {
-                    "uniqueName" : "yes_no_reply",
-                    "fieldType" : "Twilio.YES_NO"
-                },
-                {
-                    "uniqueName" : "give_amount",
-                    "fieldType" : "Twilio.CURRENCY"
                 }
             ],
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "no i want to give {give_amount}"
+                    "taggedText" : "${give_amount}"
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "no, ${give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{yes_no_give}, ${give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{yes_no_give}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{yes_no_give}, I want to give {give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "let's do {give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "I can do {give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "just {give_amount}"
+                    "taggedText" : "I want to give ${give_amount}"
                 },
                 {
                     "language" : "en-US",
@@ -125,7 +97,43 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "{give_amount}"
+                    "taggedText" : "just {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "just ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I can do {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "let's do {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, I want to give {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, I want to give ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give} I want to give ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}"
                 }
             ]
         },
@@ -928,6 +936,6 @@
         }
     ],
     "modelBuild" : {
-        "uniqueName" : "almsbot_14-8-2020_11.37.05pm"
+        "uniqueName" : "almsbot_15-8-2020_5.56.03pm"
     }
 }

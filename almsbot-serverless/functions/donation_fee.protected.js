@@ -1,17 +1,58 @@
 exports.handler = function(context, event, callback) {
     let memory = JSON.parse(event.Memory);
-    almsperson = memory.almsperson; // TODO: redirect if no almsperson
+    if (event.CurrentTaskConfidence < 0.7 || !('almsperson' in memory)) {
+        let responseObject = {"actions": [{"redirect": "task://greeting"}]};
+        callback(null, responseObject);
+    }
+    almsperson = memory.almsperson;
+    yes_no_give = "No";
     if ('Field_give_amount_Value' in event) {
         give_amount = event.Field_give_amount_Value;
+    } else if ('twilio' in memory && 'collect_amount' in memory) {
+        give_amount = memory.twilio.collected_data.give_amount.answers.give_amount.answer;
+        yes_no_give = "Yes";
     } else {
         give_amount = memory.give_amount;
+        if ('Field_yes_no_give_Value' in event) {
+            yes_no_give = event.Field_yes_no_give_Value;
+        }
     }
-    if ('Field_yes_no_give_Value' in event) {
-        yes_no_give = event.Field_yes_no_give_Value;
-        // if (yes_no_give == "No") {} // TODO: ask for value
+    if (yes_no_give == "No" && !('Field_give_amount_Value' in event)) {
+        let responseObject = {
+            "actions": [
+                {
+                    "remember": {
+                        "almsperson": almsperson,
+                        "demo_followup": demo_followup,
+                        "collect_amount": true
+                    }
+                },
+                {
+                    "collect": {
+                        "name": "give_amount",
+                        "questions": [
+                            {
+                                "question": `How much would you give to ${almsperson}?`,
+                                "name": "give_amount",
+                                "type": "Twilio.NUMBER"
+                            }
+                        ],
+                        "on_complete": {
+                            "redirect": `https://${context.SERVERLESS_ID}.twil.io/donation_fee`
+                        }
+                    }
+                }
+            ]
+        };
+        callback(null, responseObject);
+    }
+    if (give_amount <= 0) {
+        let responseObject = {"actions": [{"redirect": "task://greeting"}]};
+        callback(null, responseObject);
     }
     demo_followup = memory.demo_followup;
-    processing_fee = (give_amount * 0.03 + 0.35).toFixed(2);
+    // processing fees include squareup non-profit rates and twilio messaging fees
+    processing_fee = ( (give_amount*0.026) + 0.10 + (0.0075*15) + 0.03).toFixed(2);
     let responseObject = {
         "actions": [
             {
@@ -33,7 +74,7 @@ exports.handler = function(context, event, callback) {
                         }
                     ],
                     "on_complete": {
-                        "redirect": "https://almsbot-serverless-xxxx-prod.twil.io/donation_extra"
+                        "redirect": `https://${context.SERVERLESS_ID}.twil.io/donation_extra`
                     }
                 }
             }

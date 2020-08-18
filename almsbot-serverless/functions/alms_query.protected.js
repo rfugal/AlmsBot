@@ -20,15 +20,15 @@ exports.handler = function(context, event, callback) {
                 "say": story
             },
             {
-                "say": (`[Demo only]: Thank you for asking about ${almsperson}. \n\n`
-                        + `Can you give $${give_amount} today? \n`
-                        + `(Your entire donation goes to ${almsperson} as cash)`)
+                "say": `Thank you for asking about ${almsperson}. 
+                        \n\nThis is a demontration, try it out (no payments processed):
+                        \nCan you give $${give_amount} today? 
+                        \n(Your entire donation goes to ${almsperson} as cash)`
             },
             {
                 "listen": {
                     "tasks": [
                         "give_amount",
-                        "greeting"
                     ]
                 }
             }

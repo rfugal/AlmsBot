@@ -34,7 +34,7 @@ exports.handler = function(context, event, callback) {
                         }
                     ],
                     "on_complete": {
-                        "redirect": "https://almsbot-serverless-xxxx-prod.twil.io/process_donation"
+                        "redirect": `https://${context.SERVERLESS_ID}.twil.io/process_donation`
                     }
                 }
             }
