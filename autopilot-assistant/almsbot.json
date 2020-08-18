@@ -597,36 +597,121 @@
                             "questions" : [
                                 {
                                     "type" : "Twilio.FIRST_NAME",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "No reconocí eso como un nombre de pila. Inténtelo de nuevo, o responda SALIR para dejar el cuestionario."
+                                                },
+                                                {
+                                                    "say" : "Dejando el cuestionario"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://spanish",
+                                            "num_attempts" : 2
+                                        }
+                                    },
                                     "question" : "Me gustaría ponerle en contacto con nuestro personal. ¿Cuál es su nombre de pila?",
                                     "name" : "first_name"
                                 },
                                 {
                                     "type" : "Twilio.YES_NO",
-                                    "question" : "¿Puede nuestro defensor enviarle un mensaje de texto a este número de teléfono? responder yes o no",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "¿Puede nuestro personal enviarle un mensaje de texto a este número de teléfono? Responda YES o NO; o responda SALIR para dejar el cuestionario."
+                                                },
+                                                {
+                                                    "say" : "Dejando el cuestionario"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://spanish",
+                                            "num_attempts" : 2
+                                        }
+                                    },
+                                    "question" : "¿Puede nuestro personal enviarle un mensaje de texto a este número de teléfono? Responda YES o NO",
                                     "name" : "text_able"
                                 },
                                 {
                                     "type" : "Twilio.YES_NO",
-                                    "question" : "¿Puede nuestro abogado llamarte a este número de teléfono? responder yes o no",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "¿Puede nuestro personal llamarte a este número de teléfono? Responda YES o NO; o responda SALIR para dejar el cuestionario."
+                                                },
+                                                {
+                                                    "say" : "Dejando el cuestionario"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://spanish",
+                                            "num_attempts" : 2
+                                        }
+                                    },
+                                    "question" : "¿Puede nuestro personal llamarte a este número de teléfono? Responda YES o NO",
                                     "name" : "voice_able"
                                 },
                                 {
                                     "type" : "Twilio.TIME",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "Lo siento, no me di cuenta. Por favor, responda con una hora, como las 12:00 p.m. Inténtelo de nuevo, o responda SALIR para dejar el cuestionario."
+                                                },
+                                                {
+                                                    "say" : "Dejando el cuestionario"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://spanish",
+                                            "num_attempts" : 2
+                                        }
+                                    },
                                     "question" : "¿Cuál es la mejor hora para conectar contigo? (Nos conectaremos lo antes posible, pero puede ser dentro de un par de días) responda con a.m. o p.m.' ",
                                     "name" : "connect_hour"
                                 },
                                 {
                                     "type" : "Twilio.CITY",
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [
+                                                {
+                                                    "say" : "Lo siento, no me di cuenta. Por favor, responda con el nombre de una ciudad de Utah. Inténtelo de nuevo, o responda SALIR para dejar el cuestionario."
+                                                },
+                                                {
+                                                    "say" : "Dejando el cuestionario"
+                                                }
+                                            ]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://spanish",
+                                            "num_attempts" : 2
+                                        }
+                                    },
                                     "question" : "¿En qué ciudad estás?",
                                     "name" : "city"
                                 },
                                 {
                                     "type" : "Twilio.YES_NO",
-                                    "question" : "¿Se siente cómodo hablando en inglés?",
+                                    "question" : "¿Se siente cómodo hablando en inglés? Responda YES o NO",
                                     "name" : "english_ok"
                                 },
                                 {
-                                    "question" : "Got it. ¿Algo más que pueda pasar antes de que lleguen? ¿Hay algún otro número en el que podamos localizarle?",
+                                    "question" : "¿Algo más que pueda comunicarle a un trabajador, como si hubiera otro número para contactarlo? Responda con cualquier cosa para enviar el cuestionario",
                                     "name" : "comments"
                                 }
                             ]
