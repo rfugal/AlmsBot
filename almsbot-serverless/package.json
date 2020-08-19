@@ -7,9 +7,12 @@
     "start": "twilio-run",
     "deploy": "twilio-run deploy"
   },
-  "dependencies": {},
+  "dependencies": {
+    "square-connect": "2.20190814.0"
+  },
   "devDependencies": {
-    "twilio-run": "^2.6.0"
+    "twilio-run": "^2.6.0",
+    "nodemon": "^1.19.0"
   },
   "engines": {
     "node": "10"
