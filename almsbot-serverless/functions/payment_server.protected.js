@@ -24,24 +24,34 @@ exports.handler = function(context, event, callback) {
   const request_body = {
     source_id: event.nonce,
     amount_money: {
-      amount: 100, // $1.00 charge
+      amount: parseInt(event.amount),
       currency: 'USD'
     },
     idempotency_key: idempotency_key
   };
 
-  try {
-    const response = payments_api.createPayment(request_body);
-    // callback.status(200).json({
-    callback(null, {
-      'title': 'Payment Successful',
-      'result': response
+  payments_api.createPayment(request_body)
+    .then( function(response) {
+      if (response.payment.status == "COMPLETED") {
+        responseObject = {
+          'title': 'Payment Successful',
+          'result': response,
+          'amount': event.amount
+        }
+      } else {
+        responseObject = {
+          'title': 'Payment Failed',
+          'result': response,
+          'amount': event.amount
+        }
+      }
+      callback(null, responseObject);
+    })
+    .catch( function(error) {
+      callback(null, {
+        'title': 'Payment Failed',
+        'result': error,
+        'amount': event.amount
+      });
     });
-  } catch(error) {
-    // callback.status(500).json({
-    callback(err, {
-      'title': 'Payment Failure',
-      'result': error.response.text
-    });
-  }
 };

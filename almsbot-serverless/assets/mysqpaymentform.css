@@ -16,6 +16,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media screen and (max-width: 422px) {
+  #form-container {
+    width: 90%;
+  }
+}
+
+@font-face {
+  font-family:"Square Market";
+  font-weight:400;
+  font-style:normal;
+  src:url(https://sq-connect-web-production-f.squarecdn.com/%40square/glass-ui/fonts/sqmarket/sqmarket-regular-84eba500a4ec29ccfadf1e9bff16b67f.woff2) format("woff2"),
+  url(https://sq-connect-web-production-f.squarecdn.com/%40square/glass-ui/fonts/sqmarket/sqmarket-regular-9ad7ff5c9923221c0bb0cb3bb07fe118.woff) format("woff")
+}@font-face {
+  font-family:"Square Market";
+  font-weight:400;
+  font-style:italic;
+  src:url(https://sq-connect-web-production-f.squarecdn.com/%40square/glass-ui/fonts/sqmarket/sqmarket-regular-italic-acd95aa5e04a7ef2eeaacc6034354d68.woff2) format("woff2"),
+  url(https://sq-connect-web-production-f.squarecdn.com/%40square/glass-ui/fonts/sqmarket/sqmarket-regular-italic-49bc07c0498062dce2bfbb0a5728e328.woff) format("woff")
+}
+@font-face {
+  font-family:"Square Market";
+  font-weight:500;
+  font-style:normal;
+  src:url(https://sq-connect-web-production-f.squarecdn.com/%40square/glass-ui/fonts/sqmarket/sqmarket-medium-2344124773c71bf4fa4ad407e7c3a467.woff2) format("woff2"),
+  url(https://sq-connect-web-production-f.squarecdn.com/%40square/glass-ui/fonts/sqmarket/sqmarket-medium-87fe9beef569bb03cb3845a1e478abac.woff) format("woff")
+}
+
 body, html {
   background-color: #F7F8F9;
   color: #373F4A;
@@ -37,7 +64,8 @@ fieldset {
 
 #form-container {
   position: relative;
-  width: 380px;
+  max-width: 380px;
+  min-width: 288px;
   margin: 0 auto;
   top: 50%;
   transform: translateY(-50%);
@@ -105,4 +133,94 @@ fieldset {
 
 .button-credit-card:hover {
   background-color: #4281CB;
+}
+
+/* Customize the Apple Pay on the Web button */
+/* CSS */
+@supports (-webkit-appearance: -apple-pay-button) { 
+  .apple-pay-button {
+      display: none;
+      -webkit-appearance: -apple-pay-button;
+  }
+  .apple-pay-button-black {
+      -apple-pay-button-style: black;
+  }
+  .apple-pay-button-white {
+      -apple-pay-button-style: white;
+  }
+  .apple-pay-button-white-with-line {
+      -apple-pay-button-style: white-outline;
+  }
+}
+
+@supports not (-webkit-appearance: -apple-pay-button) {
+  .apple-pay-button {
+      display: none;
+      background-size: 100% 60%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      border-radius: 5px;
+      padding: 0px;
+      box-sizing: border-box;
+      min-width: 200px;
+      min-height: 32px;
+      max-height: 64px;
+  }
+  .apple-pay-button-black {
+      background-image: -webkit-named-image(apple-pay-logo-white);
+      background-color: black;
+  }
+  .apple-pay-button-white {
+      background-image: -webkit-named-image(apple-pay-logo-black);
+      background-color: white;
+  }
+  .apple-pay-button-white-with-line {
+      background-image: -webkit-named-image(apple-pay-logo-black);
+      background-color: white;
+      border: .5px solid black;
+  } 
+}
+
+/* Indicates how Google Pay button will appear */
+.button-google-pay {
+  width: 100%;
+  height: 56px;
+  margin-top: 10px;
+  -webkit-transition: background .2s ease-in-out;
+     -moz-transition: background .2s ease-in-out;
+      -ms-transition: background .2s ease-in-out;
+          transition: background .2s ease-in-out;
+  min-width: 200px;
+  padding: 11px 24px;
+  background-color: #000;
+  background-image: url(google-pay-mark.svg);
+  background-origin: content-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 84px;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.30), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  outline: 0;
+  cursor: pointer;
+  display: none;
+}
+.sq-text {
+  font-weight: 400;
+  font-size: 14pt;
+  margin: 14pt;
+  font-family: "Square Market","helvetica neue",helvetica,arial,sans-serif;
+  text-rendering: optimizeLegibility;
+}
+.sq-text-inline {
+  font-weight: 400;
+  font-size: 14pt;
+  margin: 32px 4px 12px 0px;
+  display: inline-flex;
+  font-family: "Square Market","helvetica neue",helvetica,arial,sans-serif;
+  text-rendering: optimizeLegibility;
+}
+.sq-img {
+  position: relative;
+  top: 3.5pt;
 }

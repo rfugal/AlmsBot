@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- link to the SqPaymentForm library -->
     <script type="text/javascript" src="https://js.squareupsandbox.com/v2/paymentform">
     </script>
@@ -22,11 +23,25 @@
   </head>
   <body>
    <div id="form-container">
+     <p class="sq-text">This is not a working payment page, development testing only.</p>
+     <p class="sq-text">Apple Pay and Google Pay submissions will not be charged. Fill the form with the following Sandbox test credit card from the test values set.</p>
+     <ul class="sq-text">
+       <li><b>Card Number:</b> <br/>4111 1111 1111 1111</li>
+       <li><b>MM/YY:</b> 12/21</li>
+       <li><b>CVV:</b> 111</li>
+       <li><b>Postal:</b> 11111</li>
+     </ul>
+     <p class="sq-text" id="message-text"></p>
+     <button class="button-credit-card apple-pay-button" id="sq-apple-pay"></button>
+     <button class="button-google-pay" id="sq-google-pay"></button>
+     <p class="sq-text-inline">Pay by credit card, via</p>
+     <img class="sq-img" src="square-up.svg">
+     
      <div id="sq-card-number"></div>
      <div class="third" id="sq-expiration-date"></div>
      <div class="third" id="sq-cvv"></div>
      <div class="third" id="sq-postal-code"></div>
-     <button id="sq-creditcard" class="button-credit-card" onclick="onGetCardNonce(event)">Pay $1.00</button>
+     <button id="sq-creditcard" class="button-credit-card" onclick="onGetCardNonce(event)">Pay $X.00</button>
    </div> <!-- end #form-container --> 
    <script type="text/javascript" src="square_payment.js">
    </script>

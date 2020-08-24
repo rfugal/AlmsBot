@@ -8,7 +8,8 @@
     "deploy": "twilio-run deploy"
   },
   "dependencies": {
-    "square-connect": "2.20190814.0"
+    "square-connect": "2.20190814.0",
+    "twilio-sync": "^0.12.2"
   },
   "devDependencies": {
     "twilio-run": "^2.6.0",
