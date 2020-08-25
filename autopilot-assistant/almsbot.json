@@ -68,64 +68,24 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://almsbot-serverless-xxxx-prod.twil.io/donation_fee"
+                        "redirect" : "https://almsbot-xxxx.twil.io/donation_fee"
                     }
                 ]
             },
             "fields" : [
                 {
-                    "uniqueName" : "yes_no_give",
-                    "fieldType" : "Twilio.YES_NO"
-                },
-                {
                     "uniqueName" : "give_amount",
                     "fieldType" : "Twilio.NUMBER"
+                },
+                {
+                    "uniqueName" : "yes_no_give",
+                    "fieldType" : "Twilio.YES_NO"
                 }
             ],
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "{yes_no_give}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{yes_no_give} I want to give ${give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{yes_no_give}, I want to give ${give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{yes_no_give}, ${give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{yes_no_give}, {give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{yes_no_give}, I want to give {give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "let's do {give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "I can do {give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "just ${give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "just {give_amount}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "I want to give {give_amount}"
+                    "taggedText" : "${give_amount}"
                 },
                 {
                     "language" : "en-US",
@@ -133,7 +93,47 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "${give_amount}"
+                    "taggedText" : "I want to give {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "just {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "just ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I can do {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "let's do {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, I want to give {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, {give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}, I want to give ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give} I want to give ${give_amount}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no_give}"
                 }
             ]
         },
@@ -153,7 +153,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "help"
+                    "taggedText" : "HELP"
                 },
                 {
                     "language" : "en-US",
@@ -161,7 +161,7 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "HELP"
+                    "taggedText" : "help"
                 }
             ]
         },
@@ -170,68 +170,32 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://almsbot-serverless-xxxx-prod.twil.io/intake_assist"
+                        "redirect" : "https://almsbot-xxxx.twil.io/intake_assist"
                     }
                 ]
             },
             "fields" : [
                 {
-                    "uniqueName" : "first_name",
-                    "fieldType" : "Twilio.FIRST_NAME"
-                },
-                {
-                    "uniqueName" : "last_name",
-                    "fieldType" : "Twilio.LAST_NAME"
+                    "uniqueName" : "phone_number",
+                    "fieldType" : "Twilio.PHONE_NUMBER"
                 },
                 {
                     "uniqueName" : "email",
                     "fieldType" : "Twilio.EMAIL"
                 },
                 {
-                    "uniqueName" : "phone_number",
-                    "fieldType" : "Twilio.PHONE_NUMBER"
+                    "uniqueName" : "last_name",
+                    "fieldType" : "Twilio.LAST_NAME"
+                },
+                {
+                    "uniqueName" : "first_name",
+                    "fieldType" : "Twilio.FIRST_NAME"
                 }
             ],
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "{first_name} {last_name} {email}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{first_name} {email}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{first_name} {last_name} {phone_number}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{first_name} {phone_number}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{first_name} {last_name} {phone_number} {email}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{first_name} {last_name} {email} {phone_number}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{first_name} {email} {phone_number}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{first_name} {phone_number} {email}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{last_name} {email} {phone_number}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "{last_name} {email}"
+                    "taggedText" : "Russ 801-888-2585"
                 },
                 {
                     "language" : "en-US",
@@ -239,7 +203,43 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "Russ 801-888-2585"
+                    "taggedText" : "{last_name} {email}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{last_name} {email} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {phone_number} {email}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {email} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {last_name} {email} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {last_name} {phone_number} {email}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {last_name} {phone_number}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {email}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{first_name} {last_name} {email}"
                 }
             ]
         },
@@ -248,80 +248,24 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://almsbot-serverless-xxxx-prod.twil.io/alms_query"
+                        "redirect" : "https://almsbot-xxxx.twil.io/alms_query"
                     }
                 ]
             },
             "fields" : [
                 {
-                    "uniqueName" : "almsperson",
-                    "fieldType" : "AlmsPerson"
+                    "uniqueName" : "dollars",
+                    "fieldType" : "Twilio.NUMBER"
                 },
                 {
-                    "uniqueName" : "dollars",
-                    "fieldType" : "Twilio.CURRENCY"
+                    "uniqueName" : "almsperson",
+                    "fieldType" : "AlmsPerson"
                 }
             ],
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "{almsperson}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Give to {almsperson}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Tell me about {almsperson}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Who is {almsperson}?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "What is {almsperson}'s story?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "What does {almsperson} need?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "What about {almsperson}?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Can I help {almsperson}?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "How can I help {almsperson}?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "How about {almsperson}?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Give {dollars} to {almsperson}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Send {almsperson} {dollars}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Send {dollars} to {almsperson}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "give ${dollars} to {almsperson}"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "send ${dollars} to {almsperson}"
+                    "taggedText" : "give {almsperson} ${dollars}"
                 },
                 {
                     "language" : "en-US",
@@ -329,7 +273,63 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "give {almsperson} ${dollars}"
+                    "taggedText" : "send ${dollars} to {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "give ${dollars} to {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Send {dollars} to {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Send {almsperson} {dollars}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Give {dollars} to {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How about {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How can I help {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Can I help {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What about {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What does {almsperson} need?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What is {almsperson}'s story?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Who is {almsperson}?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Tell me about {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Give to {almsperson}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{almsperson}"
                 }
             ]
         },
@@ -345,7 +345,7 @@
                             "on_complete" : {
                                 "redirect" : {
                                     "method" : "POST",
-                                    "uri" : "https://almsbot-serverless-xxxx-prod.twil.io/intake_almsperson"
+                                    "uri" : "https://almsbot-xxxx.twil.io/intake_almsperson"
                                 }
                             },
                             "name" : "intake_contact",
@@ -473,31 +473,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "I need help"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "how can you help?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Can I get money?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "I am in need of help"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "I could use some help"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "How do I get help?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "What help is available?"
+                    "taggedText" : "I need food"
                 },
                 {
                     "language" : "en-US",
@@ -505,7 +481,31 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "I need food"
+                    "taggedText" : "What help is available?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How do I get help?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I could use some help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I am in need of help"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Can I get money?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "how can you help?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I need help"
                 }
             ]
         },
@@ -526,47 +526,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "spanish"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "chatear en español"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "español"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "espanol"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "chatear en espanol"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿hablas español?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hablas español"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hablas espanol"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿hablas espanol?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿habla usted español?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿habla usted espanol?"
+                    "taggedText" : "habla usted espanol"
                 },
                 {
                     "language" : "en-US",
@@ -574,7 +534,47 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "habla usted espanol"
+                    "taggedText" : "¿habla usted espanol?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿habla usted español?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿hablas espanol?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hablas espanol"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hablas español"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿hablas español?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "chatear en espanol"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "espanol"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "español"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "chatear en español"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "spanish"
                 }
             ]
         },
@@ -590,7 +590,7 @@
                             "on_complete" : {
                                 "redirect" : {
                                     "method" : "POST",
-                                    "uri" : "https://almsbot-serverless-xxxx-prod.twil.io/intake_almsperson"
+                                    "uri" : "https://almsbot-xxxx.twil.io/intake_almsperson"
                                 }
                             },
                             "name" : "intake_contact",
@@ -723,35 +723,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "Necesito comida"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Necesito dinero."
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿Qué ayuda hay disponible?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿Cómo puedo obtener ayuda?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Me vendría bien algo de ayuda"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿Puedo obtener dinero?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "¿Cómo puedes ayudar?"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "ayuda"
+                    "taggedText" : "necesito"
                 },
                 {
                     "language" : "en-US",
@@ -759,7 +731,35 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "necesito"
+                    "taggedText" : "ayuda"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Cómo puedes ayudar?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Puedo obtener dinero?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Me vendría bien algo de ayuda"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Cómo puedo obtener ayuda?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "¿Qué ayuda hay disponible?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Necesito dinero."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Necesito comida"
                 }
             ]
         },
@@ -779,31 +779,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "i'd like to give"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "how can I give"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "give"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "donate"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "gift"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Me gustaría dar"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "dar"
+                    "taggedText" : "regalar"
                 },
                 {
                     "language" : "en-US",
@@ -811,7 +787,31 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "regalar"
+                    "taggedText" : "dar"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Me gustaría dar"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "gift"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "donate"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "give"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "how can I give"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "i'd like to give"
                 }
             ]
         },
@@ -845,75 +845,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "Hi"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "good morning"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "heya"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "Hello."
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hi!"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hi there."
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "good afternoon"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hello"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "yo"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hi there"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "sup"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "hey"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "what can you do"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "what do you do"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "whatsup"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "what'us up"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "startover"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "start over"
+                    "taggedText" : "go back"
                 },
                 {
                     "language" : "en-US",
@@ -921,7 +853,75 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "go back"
+                    "taggedText" : "start over"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "startover"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what'us up"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "whatsup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what do you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what can you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hey"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "sup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "yo"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hello"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good afternoon"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi!"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hello."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "heya"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good morning"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi"
                 }
             ]
         },
@@ -951,63 +951,7 @@
             "samples" : [
                 {
                     "language" : "en-US",
-                    "taggedText" : "no thanks"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "that's all for today"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "that would be all"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "no thanks"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "goodbye"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "goodnight"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "go away"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "stop talking"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "no"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "that is all thank you"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "that would be all thanks"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "cancel"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "good bye"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "stop"
-                },
-                {
-                    "language" : "en-US",
-                    "taggedText" : "bye bye"
+                    "taggedText" : "see ya"
                 },
                 {
                     "language" : "en-US",
@@ -1015,12 +959,68 @@
                 },
                 {
                     "language" : "en-US",
-                    "taggedText" : "see ya"
+                    "taggedText" : "bye bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "cancel"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that is all thank you"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop talking"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "go away"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodnight"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodbye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's all for today"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
                 }
             ]
         }
     ],
     "modelBuild" : {
-        "uniqueName" : "Built on 08-17-2020 18:26:25"
+        "uniqueName" : "Built on 08-17-2020 23:11:09"
     }
 }

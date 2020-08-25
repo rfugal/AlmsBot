@@ -4,7 +4,8 @@ exports.handler = function(context, event, callback) {
                 \nhttps://www.sfgate.com/bayarea/article/The-city-s-panhandlers-tell-their-own-stories-4929388.php";
     let demo_followup = "Text2Alms is an nascent non-proift by Russ Fugal. \
                          Reply with your name and email or phone number if you'd like to contribute with your talent or resources.";
-    ('Field_dollars_Value' in event) ? give_amount = event.Field_dollars_Value : give_amount = 20;
+    ('Field_dollars_Value' in event) ? give_amount = event.Field_dollars_Value : give_amount = "20";
+    give_amount = parseFloat(give_amount).toFixed(2);
     if (almsperson == "Bambie") {
         story = "Bambie has a rare genetic disease that led to the amputation of both her legs. \
                  An almswoman in a wheelchair, she receives $80 to $150 a day.";
@@ -23,7 +24,7 @@ exports.handler = function(context, event, callback) {
                 "say": story
             },
             {
-                "say": `Replying does not send money, a payment link will be provided.
+                "say": `Replying does not send money, a link to a payment page will be provided.
                         \nCan you give $${give_amount} today?
                         \n(Your entire donation goes to ${almsperson} as cash)`
             },

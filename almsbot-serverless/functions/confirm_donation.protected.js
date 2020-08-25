@@ -12,7 +12,7 @@ exports.handler = function(context, event, callback) {
     let yes_no_extra = answers.yes_no_extra.answer;
     let data = {
         almsperson: almsperson,
-        give_amount: give_amount.toFixed(2),
+        give_amount: give_amount,
         demo_followup: memory.demo_followup,
         donor: event.UserIdentifier
     }

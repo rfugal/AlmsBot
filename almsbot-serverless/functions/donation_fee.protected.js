@@ -46,6 +46,7 @@ exports.handler = function(context, event, callback) {
         };
         callback(null, responseObject);
     }
+    give_amount = parseFloat(give_amount);
     if (give_amount <= 0) {
         let responseObject = {"actions": [{"redirect": "task://greeting"}]};
         callback(null, responseObject);
@@ -53,6 +54,7 @@ exports.handler = function(context, event, callback) {
     demo_followup = memory.demo_followup;
     // processing fees include squareup non-profit rates and twilio messaging fees plus $0.15
     processing_fee = ( (give_amount*0.026) + 0.10 + (0.0075*20) + 0.03 + 0.15).toFixed(2);
+    give_amount = give_amount.toFixed(2);
     let responseObject = {
         "actions": [
             {
