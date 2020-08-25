@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 exports.handler = function(context, event, callback) {
     const SERVICE_SID = context.SYNC_SERVICE_SID;
     const PAYMENT_ID_MAP = context.PAYMENT_ID_MAP;
@@ -9,11 +10,11 @@ exports.handler = function(context, event, callback) {
     let answers = memory.twilio.collected_data.extras.answers;
     let yes_no_fee = answers.yes_no_fee.answer;
     let yes_no_extra = answers.yes_no_extra.answer;
-    let user = event.UserIdentifier;
     let data = {
         almsperson: almsperson,
-        give_amount: give_amount,
-        demo_followup: memory.demo_followup
+        give_amount: give_amount.toFixed(2),
+        demo_followup: memory.demo_followup,
+        donor: event.UserIdentifier
     }
     let message_end = "?";
     let total_amount = parseFloat(give_amount);
@@ -30,8 +31,9 @@ exports.handler = function(context, event, callback) {
     data.full_amount = (total_amount*100).toFixed(0);
     data.message = `Ok, you want to give $${give_amount} to ${almsperson}${message_end}`;
     item = {}
-    item.key = user;
+    item.key = crypto.randomBytes(8).toString('hex');
     item.data = data;
+    item.ttl = 172800;
 
     const twilioClient = context.getTwilioClient();
     twilioClient.sync
@@ -51,7 +53,10 @@ exports.handler = function(context, event, callback) {
             "on_complete": {
                 "redirect": `https://${context.SERVERLESS_ID}.twil.io/process_donation`
             }
-        }},{"remember":{"demo_followup": memory.demo_followup}}]});
+          }},{"remember": {
+            "demo_followup": memory.demo_followup,
+            "donor_key": item.key
+        }}]});
     }).catch(function(err) {
         console.error(err);
         callback(err);

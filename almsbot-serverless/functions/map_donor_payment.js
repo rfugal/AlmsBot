@@ -5,7 +5,7 @@ exports.handler = function(context, event, callback) {
     twilioClient.sync
         .services(SERVICE_SID)
         .syncMaps(PAYMENT_ID_MAP)
-        .syncMapItems.get(event.user)
+        .syncMapItems.get(event.donor)
         .fetch().then( function(item) {
             callback(null, item);
         });

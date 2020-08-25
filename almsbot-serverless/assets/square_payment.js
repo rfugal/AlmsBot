@@ -1,18 +1,20 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+let donor = {};
 let full_amount = (urlParams.has('amount')
                    && !isNaN(urlParams.get('amount'))) ? parseInt(urlParams.get('amount')) : 2000;
 let submit_btn = document.getElementById('sq-creditcard');
 let message_text = document.getElementById('message-text');
 submit_btn.innerText = `Donate $${(full_amount*0.01).toFixed(2)}`;
-if (urlParams.has('user')) {
-  fetch('./map_user_payment', {
+if (urlParams.has('donor')) {
+  donor.key = urlParams.get('donor');
+  fetch('./map_donor_payment', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({'user': urlParams.get('user')})
+    body: JSON.stringify({'donor': donor.key})
   })
   .catch(err => {
     alert('Network error: ' + err);
@@ -24,13 +26,15 @@ if (urlParams.has('user')) {
     return response.json(); //UPDATE HERE
   })
   .then(item => {
-    if (item.data.hasOwnProperty('full_amount')) {
-      full_amount = item.data.full_amount;
+    donor.data = item.data;
+    if (donor.data.hasOwnProperty('paid') && donor.data.paid) {
+      window.location.replace(`./thank-you.html?donor=${donor.key}`);
+    }
+    if (donor.data.hasOwnProperty('full_amount')) {
+      full_amount = donor.data.full_amount;
       submit_btn.innerText = `Donate $${(full_amount*0.01).toFixed(2)}`;
     }
-    if (item.data.hasOwnProperty('message')) {
-      message_text.innerText = item.data.message;
-    }
+    if (donor.data.hasOwnProperty('message')) {message_text.innerText = donor.data.message;}
   })
   .catch(err => {
     console.log(err);
@@ -121,7 +125,8 @@ const paymentForm = new SqPaymentForm({
             },
             body: JSON.stringify({
               nonce: nonce,
-              amount: full_amount
+              amount: full_amount,
+              donor: donor
             })
           })
           .catch(err => {
@@ -135,7 +140,10 @@ const paymentForm = new SqPaymentForm({
           })
           .then(data => {
             console.log(data); //UPDATE HERE
-            alert(`$${(data.amount/100).toFixed(2)} ${data.title}`); // TODO: update syncMapItem
+            alert(`$${(data.amount/100).toFixed(2)} ${data.title}`);
+            if (data.title == 'Payment Successful') {
+              window.location.replace(`./thank-you.html?donor=${donor.key}`);
+            }
           })
           .catch(err => {
             console.error(err);
@@ -145,7 +153,8 @@ const paymentForm = new SqPaymentForm({
       createPaymentRequest: function () {
         return myCreatePaymentRequestHelperFunction();
       }
-    }
+    },
+    paymentDetailsUpdate: {}
 });
 //TODO: paste code from step 1.1.4
 //TODO: paste code from step 1.1.5
@@ -162,53 +171,41 @@ function myCreatePaymentRequestHelperFunction() {
   /*
   * Triggered when: a digital wallet payment button is clicked.
   */
+  var balance = (full_amount/100).toFixed(2);
   var paymentRequestJson = {
     requestShippingAddress: true,
     requestBillingInfo: true,
-    shippingContact: {
-      familyName: "CUSTOMER LAST NAME",
-      givenName: "CUSTOMER FIRST NAME",
-      email: "mycustomer@example.com",
-      country: "USA",
-      region: "CA",
-      city: "San Francisco",
-      addressLines: [
-        "1455 Market St #600"
-      ],
-      postalCode: "94103",
-      phone:"14255551212"
-    },
     currencyCode: "USD",
     countryCode: "US",
     total: {
       label: "Text2Alms.org",
-      amount: "85.00",
+      amount: (full_amount/100).toFixed(2),
       pending: false
     },
-    lineItems: [
-      {
-        label: "Subtotal",
-        amount: "60.00",
-        pending: false
-      },
-      {
-        label: "Shipping",
-        amount: "19.50",
-        pending: true
-      },
-      {
-        label: "Tax",
-        amount: "5.50",
-        pending: false
-      }
-    ],
-    shippingOptions: [
-      {
-        id: "1",
-        label: "SHIPPING LABEL",
-        amount: "SHIPPING COST"
-      }
-   ]
+    lineItems: []
   };
+  if (donor.data.hasOwnProperty('give_amount')) {
+    paymentRequestJson.lineItems.push({
+      label: `Direct Alms to ${donor.data.almsperson}`,
+      amount: donor.data.give_amount,
+      pending: false
+    });
+    balance -= donor.data.give_amount;
+  }
+  if (donor.data.hasOwnProperty('processing_fee')) {
+    paymentRequestJson.lineItems.push({
+      label: "Processing Fees",
+      amount: donor.data.processing_fee,
+      pending: false
+    });
+    balance -= donor.data.processing_fee;
+  }
+  if (donor.hasOwnProperty('extra_amount')) {
+    paymentRequestJson.lineItems.push({
+      label: "Text2Alms and Partner Organization(s) Operations",
+      amount: balance.toFixed(2),
+      pending: false
+    });
+  }
   return paymentRequestJson;
 }

@@ -2,6 +2,8 @@ const crypto = require('crypto');
 const squareConnect = require('square-connect');
 
 exports.handler = function(context, event, callback) {
+  const SERVICE_SID = context.SYNC_SERVICE_SID;
+  const PAYMENT_ID_MAP = context.PAYMENT_ID_MAP;
   // Set the Access Token
   const accessToken = context.SQUARE_ACCESS_TOKEN;
   // Set Square Connect credentials and environment
@@ -29,6 +31,8 @@ exports.handler = function(context, event, callback) {
     },
     idempotency_key: idempotency_key
   };
+  let donor = event.donor;
+  donor.data.paid = true;
 
   payments_api.createPayment(request_body)
     .then( function(response) {
@@ -38,14 +42,23 @@ exports.handler = function(context, event, callback) {
           'result': response,
           'amount': event.amount
         }
+        const twilioClient = context.getTwilioClient();
+        twilioClient.sync.services(SERVICE_SID)
+        .syncMaps(PAYMENT_ID_MAP).syncMapItems
+        .get(donor.key).update({
+          data: donor.data,
+          ttl: 0
+        }).then(response => {
+          responseObject.update_response = response;
+          callback(null, responseObject);
+        });      
       } else {
-        responseObject = {
+        callback(null, {
           'title': 'Payment Failed',
           'result': response,
           'amount': event.amount
-        }
+        });
       }
-      callback(null, responseObject);
     })
     .catch( function(error) {
       callback(null, {
