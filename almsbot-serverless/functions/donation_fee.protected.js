@@ -18,32 +18,36 @@ exports.handler = function(context, event, callback) {
         }
     }
     if (yes_no_give == "No") {
-        let responseObject = {
-            "actions": [
-                {
-                    "remember": {
-                        "almsperson": almsperson,
-                        "demo_followup": demo_followup,
-                        "collect_amount": true
-                    }
-                },
-                {
-                    "collect": {
-                        "name": "give_amount",
-                        "questions": [
-                            {
-                                "question": `How much would you give to ${almsperson}?`,
-                                "name": "give_amount",
-                                "type": "Twilio.NUMBER"
+        if ('collect_amount' in memory) {
+            responseObject = {"actions": [{"say": demo_followup}]}
+        } else {
+            let responseObject = {
+                "actions": [
+                    {
+                        "remember": {
+                            "almsperson": almsperson,
+                            "demo_followup": demo_followup,
+                            "collect_amount": true
+                        }
+                    },
+                    {
+                        "collect": {
+                            "name": "give_amount",
+                            "questions": [
+                                {
+                                    "question": `How much would you give to ${almsperson}?`,
+                                    "name": "give_amount",
+                                    "type": "Twilio.NUMBER"
+                                }
+                            ],
+                            "on_complete": {
+                                "redirect": `https://${context.SERVERLESS_ID}.twil.io/donation_fee`
                             }
-                        ],
-                        "on_complete": {
-                            "redirect": `https://${context.SERVERLESS_ID}.twil.io/donation_fee`
                         }
                     }
-                }
-            ]
-        };
+                ]
+            };
+        }
         callback(null, responseObject);
     }
     give_amount = parseFloat(give_amount);

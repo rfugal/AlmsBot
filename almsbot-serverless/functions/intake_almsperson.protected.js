@@ -12,10 +12,10 @@ exports.handler = function(context, event, callback) {
         connect_hour: answers.connect_hour.answer,
         city: answers.city.answer,
         comments: answers.comments.answer,
-        english_ok: answers.english_ok.answer,
         From: event.UserIdentifier,
         channel: event.Channel
     };
+    if ('english_ok' in answers) {intakeContact.english_ok = answers.english_ok.answer;}
     message = `New almsperson— \n${intakeContact.UserIdentifier} \n${intakeContact.first_name} 
             \nText? ${intakeContact.text_able} \nCall? ${intakeContact.voice_able} \n${intakeContact.connect_hour} 
             \n${intakeContact.city} \n${intakeContact.comments} `;
@@ -38,8 +38,7 @@ exports.handler = function(context, event, callback) {
         .syncListItems.create({ data: intakeContact })
         .then(x => {
             console.log('success!');
-            first_name = answers.first_name.answer;
-            let message = "One of our advocates will be in touch with you soon, " + first_name + ". God bless.";
+            let message = `One of our advocates will be in touch with you soon, ${answers.first_name.answer}. God bless.`;
             let responseObject = {
                 "actions": [
                     {

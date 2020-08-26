@@ -55,7 +55,8 @@ exports.handler = function(context, event, callback) {
             }
           }},{"remember": {
             "demo_followup": memory.demo_followup,
-            "donor_key": item.key
+            "donor_key": item.key,
+            "almsperson": almsperson
         }}]});
     }).catch(function(err) {
         console.error(err);
