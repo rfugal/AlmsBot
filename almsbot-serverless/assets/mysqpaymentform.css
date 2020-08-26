@@ -63,12 +63,9 @@ fieldset {
 }
 
 #form-container {
-  position: relative;
   max-width: 380px;
   min-width: 288px;
   margin: 50pt auto 50pt auto;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .third {
