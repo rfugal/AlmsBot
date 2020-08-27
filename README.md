@@ -1,4 +1,4 @@
-<img src="almsbot-serverless/assets/Text2Alms.svg" width="40%">
+<img src="almsbot-serverless/assets/Text2Alms.svg" width="320px">
 
 # AlmsBot by Text2Alms.org
 
