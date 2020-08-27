@@ -1,6 +1,6 @@
-# AlmsBot by Text2Alms.org
+<img src="almsbot-serverless/assets/Text2Alms.svg" width="40%">
 
-![AlmsBot Logo](./almsbot-serverless/Text2Alms.svg)
+# AlmsBot by Text2Alms.org
 
 [Demo](https://twitter.com/rfugal/status/1294060585475141632) video on Twitter.
 
