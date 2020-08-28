@@ -4,11 +4,15 @@
 
 [Demo](https://twitter.com/rfugal/status/1294060585475141632) video on Twitter.
 
-AlmsBot is the [Twilio](https://twilio.com)-based front-end for Text2Alms. Utah-based Text2Alms is a storyteller, a community resource for the unhoused and unemployed, and payment processor. When someone is in need we interview them, fact check their story, tell their story in 160 characters, and text their story to anyone who texts their name/handle to our number. We then invite the texter to give to the almsman/almswoman through our platform, and Text2Alms forwards alms to those in need.
+AlmsBot is the [Twilio](https://twilio.com)-based front-end for Text2Alms. Utah-based Text2Alms is a storyteller, a community resource for the unhoused and unemployed, and payment processor. When someone is in need we interview them, check their story, tell their story in 160 characters, and text their story to anyone who texts their name/handle to our number. We then invite the texter to give to the almsman/almswoman through our platform, and Text2Alms forwards alms to those in need.
 
-We make giving and recieving alms easy through communication and personal connection. Potential givers with unanswered questions may hesitate to give alms to the destitue. We answer with personal stories. Visit [www.Text2Alms.org](http://www.text2alms.org) for the 411.
+Our aim is to fill the role of a panhandler credentialing service as described in [this article published in the European Journal of Homelessness](https://www.feantsaresearch.org/download/12-1_b1_thinkpiece_dordick_v028543394139574871091.pdf). The concept of credentialing begins on page 74.
+
+The story could be about where they’ve been, it could also be about where they’re going (or hoping to go) or it could simply be who they are. The purpose of the story told is only to reduce hesitation on the givers part, which is why we limit it to 160 characters. The story told will be approved by the almsperson, and the reason to check their story (with consent and care) is to affirm to donors that the almsperson isn’t a scammer. The story works as confirmation to donors that the almsperson isn’t a stranger.
 
 AlmsBot is open source, and we invite anyone interested to help us develop the code and use it to start up a similar local non-profit.
+
+We make giving and recieving alms easy through communication and personal connection. Potential givers with unanswered questions may hesitate to give alms to the destitue. We answer with personal stories. Visit [www.Text2Alms.org](http://www.text2alms.org) for the 411.
 
 I wrote up [something on r/homeless](https://www.reddit.com/r/homeless/comments/i8llcf/giving_alms_by_sms/) for some feedback:
 > I’m starting a non-profit that is a storyteller, a community resource for the unhoused and unemployed, and a payment (donation) processor. When someone is in need we interview them, fact check their story, tell their story in 160 characters, and text their story to anyone who texts their name/handle to our number. That way anyone flying a sign can add "Text {NAME} to {PHONE_NUMBER}"
